@@ -1,0 +1,12 @@
+---
+- name: Install MongoDB, NodeJS, Codebase, and PM2
+  hosts: all
+  # remote_user: root
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+
+  roles:
+    - mongodb
+    - node
+    - codebase

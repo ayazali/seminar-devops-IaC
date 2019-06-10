@@ -1,0 +1,19 @@
+---
+
+- git:
+    repo: "https://github.com/nlharri/simple-todo-app-mongodb-express-node.git"
+    dest: "{{ ansible_env.HOME }}/nodejs_codebase"
+
+- name: Install packages based on package.json using the npm installed with nvm v0.10.1.
+  npm:
+    path: "{{ ansible_env.HOME }}/nodejs_codebase"
+
+- name: Install "PM2" node.js package globally.
+  npm:
+    name: pm2
+    global: yes
+
+- name: Start PM2
+  command: /usr/bin/pm2 start app.js
+  args:
+    chdir: "{{ ansible_env.HOME }}/nodejs_codebase"

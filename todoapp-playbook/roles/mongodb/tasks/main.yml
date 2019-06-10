@@ -1,0 +1,15 @@
+---
+
+- name: Download mongodb .deb file
+  get_url:
+    url: "{{ mongodb.url }}"
+    dest: "{{ ansible_env.HOME }}/mongodb-{{ mongodb.version }}.deb"
+
+- name: Install mongodb
+  apt:
+    deb: "{{ ansible_env.HOME }}/mongodb-{{ mongodb.version }}.deb"
+
+- name: Start service mongod, if not started
+  service:
+    name: mongod
+    state: started
